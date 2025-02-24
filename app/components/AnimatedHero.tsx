@@ -3,10 +3,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { TypeAnimation } from 'react-type-animation';
-import { useState } from 'react';
 
 export default function AnimatedHero() {
-  const [isHovered, setIsHovered] = useState(false);
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);

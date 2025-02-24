@@ -5,28 +5,30 @@ import path from 'path';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize'
 
+interface FrontMatter {
+    title: string;
+    date: string;
+    description?: string;
+    [key: string]: unknown;
+}
+
 const POSTS_PATH = path.join(process.cwd(), 'content/posts');
 
 export interface BlogPost {
-    content: string;
-    frontMatter: {
-        title: string;
-        date: string;
-        excerpt: string;
-        [key: string]: any;
-    };
+    frontMatter: FrontMatter;
     slug: string;
+    content?: string;
 }
 
 export async function getAllPosts(): Promise<BlogPost[]> {
     const posts = fs.readdirSync(POSTS_PATH)
-    .filter((path: any) => /\.mdx?$/.test(path))
+    .filter((path) => /\.mdx?$/.test(path))
     .map((fileName) => {
         const source = fs.readFileSync(path.join(POSTS_PATH, fileName), 'utf8');
-        const { content, data } = matter(source);
+        const { data, content } = matter(source);
         return {
+            frontMatter: data as FrontMatter,
             content,
-            frontMatter: data as { title: string; date: string; excerpt: string; [key: string]: any },
             slug: fileName.replace(/\.mdx?$/, ''),
         };
     })

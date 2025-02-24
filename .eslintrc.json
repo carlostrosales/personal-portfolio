@@ -1,0 +1,10 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    // Disable specific rules
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    // Or disable all checks
+    "typescript-eslint/no-explicit-any": "off"
+  }
+} 

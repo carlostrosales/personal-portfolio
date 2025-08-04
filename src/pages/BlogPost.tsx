@@ -1,7 +1,32 @@
-import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+
+const markdownFiles = import.meta.glob('../blog/*.md', {
+  eager: false,
+  as: 'raw',
+});
 
 export const BlogPost = () => {
-    return (
-        <div>Hi</div>
-    )
-}
+  const { slug } = useParams();
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+    const filePath = `../blog/${slug}.md`;
+    if (markdownFiles[filePath]) {
+      markdownFiles[filePath]()
+        .then((rawContent) => {
+          setContent(rawContent);
+        })
+        .catch(() => setContent('Post not found'));
+    } else {
+      setContent('Post not found');
+    }
+  }, [slug]);
+
+  return (
+    <div style={{ padding: '2rem' }}>
+      <ReactMarkdown>{content}</ReactMarkdown>
+    </div>
+  );
+};

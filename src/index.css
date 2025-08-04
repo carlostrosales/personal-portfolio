@@ -39,7 +39,31 @@ body {
 
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.4em;
   line-height: 1.1;
   margin: .67em 0;
+}
+
+a:link, a:visited {
+  color: var(--text-color);
+}
+
+.typewriter h1 {
+  overflow: hidden;
+  border-right: 0.15em solid var(--text-color);
+  white-space: nowrap;
+  width: 16ch;
+  animation: 
+  typing 2.5s steps(40, end),
+  blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 16ch }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--text-color) }
 }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const blogPosts = [
   {
     title:
-      'From Many Opinions to One Product: The Real Process Behind Greenfield Enterprise Software',
+      '[2025/08] - From Many Opinions to One Product: The Real Process Behind Greenfield Enterprise Software',
     slug: 'writing',
   },
 ];

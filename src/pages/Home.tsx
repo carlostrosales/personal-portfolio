@@ -4,7 +4,14 @@ const blogPosts = [
   {
     title:
       '[2025/08] - From Many Opinions to One Product: The Real Process Behind Greenfield Enterprise Software',
-    slug: 'writing',
+    slug: 'enterprise-software-process',
+  },
+];
+
+const beliefPosts = [
+  {
+    title: '[2025/09] - You Should Have Beliefs (vs. drifting without them)',
+    slug: 'beliefs-vs-drifting',
   },
 ];
 
@@ -78,6 +85,14 @@ export const Home = () => {
           {blogPosts.map((post) => (
             <li key={post.slug}>
               <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+            </li>
+          ))}
+        </ul>
+        <h3>I believe...</h3>
+        <ul>
+          {beliefPosts.map((post) => (
+            <li key={post.slug}>
+              <Link to={`/beliefs/${post.slug}`}>{post.title}</Link>
             </li>
           ))}
         </ul>
